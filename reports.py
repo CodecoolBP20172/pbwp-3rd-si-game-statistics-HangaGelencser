@@ -41,4 +41,4 @@ def get_line_number_by_title(file_name, title):
             for num, line in enumerate(all_games.readlines(), 1):
                 if title == line.split("\t")[0]:
                     return num
-            raise ValueError("There is no name like this in the game list")
+            raise ValueError("There is no name like this in the list of games!")
