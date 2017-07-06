@@ -7,6 +7,7 @@ Other expectation:  if there is more than one, then return the first from the fi
 """
 import math
 
+
 def get_most_played(file_name):
     with open(file_name) as all_games:
         most_played_game = 0
@@ -18,9 +19,6 @@ def get_most_played(file_name):
                 most_played_game = actual_played_game
                 name_of_most_played_game = name_actual_played_game
         return (name_of_most_played_game)
-
-
-get_most_played("game_stat.txt")
 
 
 """How many copies have been sold total?
@@ -38,9 +36,6 @@ def sum_sold(file_name):
         return (sum_games)
 
 
-sum_sold("game_stat.txt")
-
-
 """What is the average selling?
 Expected name of the function: get_selling_avg(file_name)
 Expected output of the function: (number)
@@ -53,8 +48,6 @@ def get_selling_avg(file_name):
         for line in all_games:
             average.append(line.split("\t")[0])
         return (sum_sold(file_name) / len(average))
-
-get_selling_avg("game_stat.txt")
 
 
 """How many characters long is the longest title?
@@ -72,9 +65,6 @@ def count_longest_title(file_name):
         return maxlenght
 
 
-count_longest_title("game_stat.txt")
-
-
 """What is the average of the release dates?
 Expected name of the function: get_date_avg(file_name)
 Expected output of the function: average year (number)
@@ -90,9 +80,6 @@ def get_date_avg(file_name):
         return math.ceil(sum(date_of_release) / len(date_of_release))
 
 
-get_date_avg("game_stat.txt")
-
-
 """What properties has a game?
 Expected name of the function: get_game(file_name, title) .
 Expected output of the function: a list of all the properties of the game (a list of various type).
@@ -106,10 +93,8 @@ def get_game(file_name, title):
     with open(file_name) as all_games:
         for line in all_games:
             game = (line.split("\t"))
-            changed_list = [float(f) if f.isdigit() else f for f in game]
-            for right_line in changed_list:
-                if title == line.split("\t")[0]:
-                    return line.split("\t")
-
-
-get_game("game_stat.txt", "Age of Empires")
+            if title == game[0]:
+                game[1] = float(game[1])
+                game[2] = int(game[2])
+                game[-1] = game[-1].replace("\n", "")
+                return game
